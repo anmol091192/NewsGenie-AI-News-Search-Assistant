@@ -21,6 +21,7 @@
 
 ## 📂 Project Structure
 
+```plaintext
 NewsGenie/
 ├── tools/
 │   ├── news_tool.py          # Fetches news using GNews API
@@ -31,8 +32,7 @@ NewsGenie/
 ├── requirements.txt          # Python dependencies
 ├── README.md                 # Project documentation
 
-
----
+```
 
 ## 🛠️ Setup Instructions
 
@@ -76,19 +76,19 @@ streamlit run main.py
 ```
 The app will open in your browser (typically at http://localhost:8501).
 
-✨ How To Use
-	•	Ask anything: Type your question or pick a news category.
-	•	Latest News: Select a category like “technology” or “sports” to get the latest headlines.
-	•	Web Search: Ask factual questions (“What is MCP server?”) for live internet answers.
-	•	Robust: If the APIs are unavailable, the app notifies you gracefully.
-	•	All-in-one: Both news and search queries are handled in one interface.
+## ✨ How To Use
+	-	Ask anything: Type your question or pick a news category.
+	-	Latest News: Select a category like “technology” or “sports” to get the latest headlines.
+	-	Web Search: Ask factual questions (“What is MCP server?”) for live internet answers.
+	-	Robust: If the APIs are unavailable, the app notifies you gracefully.
+	-	All-in-one: Both news and search queries are handled in one interface.
 
 ⸻
 
-🧩 Tech Stack
-	•	Streamlit: UI framework
-	•	AutoGen: Agent orchestration
-	•	LangGraph: Workflow routing
-	•	Google Gemini: LLM
-	•	GNews API: Real-time news
-	•	Serper API: Web search
+## 🧩 Tech Stack
+	-	Streamlit: UI framework
+	-	AutoGen: Agent orchestration
+	-	LangGraph: Workflow routing
+	-	Google Gemini: LLM
+	-	GNews API: Real-time news
+	-	Serper API: Web search
