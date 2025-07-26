@@ -92,3 +92,26 @@ The app will open in your browser (typically at http://localhost:8501).
 	-	Google Gemini: LLM
 	-	GNews API: Real-time news
 	-	Serper API: Web search
+
+## Screenshots
+
+<img width="811" height="920" alt="Screenshot 2025-07-22 at 12 19 17 PM" src="https://github.com/user-attachments/assets/ef2ccbbd-1be0-4b6e-9c8a-98df8091e060" />
+
+⸻
+
+<img width="1029" height="781" alt="Screenshot 2025-07-22 at 12 20 07 PM" src="https://github.com/user-attachments/assets/7ff17254-6f39-4663-a26b-966994c70c30" />
+
+⸻
+
+
+<img width="870" height="838" alt="Screenshot 2025-07-22 at 12 19 45 PM" src="https://github.com/user-attachments/assets/4299912e-6557-4741-a6b4-03aad68ff03e" />
+
+⸻
+
+
+<img width="645" height="887" alt="Screenshot 2025-07-22 at 5 26 56 PM" src="https://github.com/user-attachments/assets/04bcd595-f9ea-4ff3-a306-242adb76ac5b" />
+
+⸻
+
+
+<img width="852" height="918" alt="Screenshot 2025-07-22 at 5 25 28 PM" src="https://github.com/user-attachments/assets/ac3b3b27-07be-485a-8086-ac28e5be9f3a" />
