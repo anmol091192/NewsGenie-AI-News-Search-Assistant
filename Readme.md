@@ -14,8 +14,10 @@
 - **News Integration:** Fetches real-time news using GNews API.
 - **Web Search:** Answers factual questions via Serper Google Search API.
 - **LangGraph Workflow:** Node-based decision routing for reliable, optimized query handling.
+- **User-Friendly API Key Input:** Secure interface for users to input their own Gemini API key.
 - **Robust Error Handling:** Graceful fallbacks for missing API keys, network issues, or no news results.
-- **Easy-to-use UI:** Interactive Streamlit web interface for chatting with NewsGenie.
+- **Interactive UI:** Clean Streamlit interface with conversation history and latest responses shown first.
+- **Mutual Exclusivity:** Smart input handling - either text query OR news category, not both.
 
 ---
 
@@ -31,8 +33,10 @@ NewsGenie/
 ├── main.py                   # Main Streamlit app, agent setup, workflow logic
 ├── requirements.txt          # Python dependencies
 ├── README.md                 # Project documentation
-
+└── .gitignore               # Git ignore file
 ```
+
+---
 
 ## 🛠️ Setup Instructions
 
@@ -56,18 +60,21 @@ venv\Scripts\activate          # On Windows
 pip install -r requirements.txt
 ```
 
-### 4. **Configure environment variables**
+### 4. **Configure environment variables (For Local Development)**
+
+Create a `.env` file in the project root:
 
 ```bash
-GEMINI_API_KEY=your_google_gemini_api_key
+# Only needed for local development
 GNEWS_API_KEY=your_gnews_api_key
 SERPER_API_KEY=your_serper_api_key
 ```
 
+**Note:** You don't need to add `GEMINI_API_KEY` to the `.env` file as users will input it directly in the app interface.
+
 Get free API keys from:
-	•	Google Gemini API: https://aistudio.google.com/app/apikey
-	•	GNews API: https://gnews.io/
-	•	Serper.dev: https://serper.dev/
+- **GNews API:** https://gnews.io/
+- **Serper.dev:** https://serper.dev/
 
 ### 5. **Run the app**
 
@@ -76,42 +83,119 @@ streamlit run main.py
 ```
 The app will open in your browser (typically at http://localhost:8501).
 
-## ✨ How To Use
-	-	Ask anything: Type your question or pick a news category.
-	-	Latest News: Select a category like “technology” or “sports” to get the latest headlines.
-	-	Web Search: Ask factual questions (“What is MCP server?”) for live internet answers.
-	-	Robust: If the APIs are unavailable, the app notifies you gracefully.
-	-	All-in-one: Both news and search queries are handled in one interface.
+---
 
-⸻
+## 🌐 Live Demo
+
+**Try NewsGenie without any setup:** [Deployed on Streamlit Cloud]
+
+*Just bring your own Gemini API key!*
+
+---
+
+## ✨ How To Use
+
+### **Getting Started**
+1. **Get a Gemini API Key:** Go to [Google AI Studio](https://aistudio.google.com/app/apikey) and create a free account to get your API key.
+2. **Enter API Key:** Paste your Gemini API key in the secure input field (stored only in your browser session).
+3. **Start Chatting:** Ask questions or select news categories!
+
+### **Features**
+- **Latest News:** Select a category like "technology" or "sports" to get the latest headlines.
+- **Web Search:** Ask factual questions ("What is MCP server?") for live internet answers.
+- **Smart Input:** The app automatically handles either text queries OR news categories (not both).
+- **Conversation History:** Latest responses appear at the top for easy viewing.
+- **Clear History:** Reset your conversation anytime.
+- **Robust:** If APIs are unavailable, the app notifies you gracefully.
+
+### **Example Queries**
+- *"News in technology"* → Gets latest tech headlines
+- *"What is artificial intelligence?"* → Web search for comprehensive answer
+- *"Who won the latest sports match?"* → Live search results
+- Select "business" category → Latest business news
+
+---
+
+## 🏗️ Architecture
+
+### **Query Processing Workflow**
+1. **User submits a query** (typed message or selected category)
+2. **Query routed:**
+   - If news category chosen → Calls `get_news` tool
+   - Else → Routes to search/LLM node based on keywords
+3. **Tool executes** (fetches news or web results)
+4. **Response displayed** with conversation history
+5. **History logged** with latest first
+
+### **Tech Components**
+- **LangGraph StateGraph:** Routes queries intelligently
+- **AutoGen Agents:** Orchestrates tool usage
+- **Tool Integration:** News and search APIs
+- **Streamlit UI:** Interactive web interface
+
+---
 
 ## 🧩 Tech Stack
-	-	Streamlit: UI framework
-	-	AutoGen: Agent orchestration
-	-	LangGraph: Workflow routing
-	-	Google Gemini: LLM
-	-	GNews API: Real-time news
-	-	Serper API: Web search
 
-## Screenshots
+- **Frontend:** Streamlit (Interactive web UI)
+- **AI Framework:** AutoGen (Agent orchestration)
+- **Workflow:** LangGraph (State-based routing)
+- **LLM:** Google Gemini 2.5 Flash
+- **News API:** GNews (Real-time headlines)
+- **Search API:** Serper (Google search results)
+- **Deployment:** Streamlit Community Cloud
 
-<img width="811" height="920" alt="Screenshot 2025-07-22 at 12 19 17 PM" src="https://github.com/user-attachments/assets/ef2ccbbd-1be0-4b6e-9c8a-98df8091e060" />
+---
 
-⸻
+## 🚀 Deployment
 
-<img width="1029" height="781" alt="Screenshot 2025-07-22 at 12 20 07 PM" src="https://github.com/user-attachments/assets/7ff17254-6f39-4663-a26b-966994c70c30" />
+### **Streamlit Community Cloud (Recommended)**
 
-⸻
+1. **Push to GitHub:** Make sure your code is in a GitHub repository
+2. **Deploy:** Go to [share.streamlit.io](https://share.streamlit.io) and connect your repo
+3. **Set Environment Variables:**
+   ```
+   GNEWS_API_KEY=your_gnews_api_key
+   SERPER_API_KEY=your_serper_api_key
+   ```
+4. **Users provide their own Gemini API key** through the app interface
 
+### **Local Development**
+```bash
+streamlit run main.py
+```
 
-<img width="870" height="838" alt="Screenshot 2025-07-22 at 12 19 45 PM" src="https://github.com/user-attachments/assets/4299912e-6557-4741-a6b4-03aad68ff03e" />
+---
 
-⸻
+## 🔒 Privacy & Security
 
+- **API Key Security:** User's Gemini API key is stored only in browser session (not saved anywhere)
+- **No Data Storage:** Conversations are not permanently stored
+- **Open Source:** Full transparency with public code
+- **Free APIs:** GNews and Serper APIs are provided free for users
 
-<img width="645" height="887" alt="Screenshot 2025-07-22 at 5 26 56 PM" src="https://github.com/user-attachments/assets/04bcd595-f9ea-4ff3-a306-242adb76ac5b" />
+---
 
-⸻
+## 🤝 Contributing
 
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-<img width="852" height="918" alt="Screenshot 2025-07-22 at 5 25 28 PM" src="https://github.com/user-attachments/assets/ac3b3b27-07be-485a-8086-ac28e5be9f3a" />
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **Google Gemini** for powerful LLM capabilities
+- **AutoGen** for agent orchestration
+- **LangGraph** for workflow management
+- **Streamlit** for the amazing web framework
+- **GNews & Serper** for reliable API services
